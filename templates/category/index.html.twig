@@ -1,0 +1,53 @@
+{% extends 'layouts/_default.html.twig' %}
+
+{% block title %}Les Catégories{% endblock %}
+
+{% block page_title %}Les Catégories{% endblock %}
+
+{% block body_class %}blog{% endblock %}
+
+{% block page_actions %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('app_category_index') }}">
+            <i class="fas fa-plus-circle"></i>
+            Créer une catégorie
+        </a>
+    {% endif %}
+
+    <a href="{{ path('app_post_index') }}">
+        <i class="fas fa-biking"></i>
+        Retour aux articles
+    </a>
+{% endblock %}
+
+{% block main %}
+    <section>
+        {% if categories | length > 0 %}
+            <div class="app-grid">
+                {% for category in categories %}
+                    <div class="grid-item">
+                        {% if category.media %}
+                            <img src="{{ asset('assets/img/category/' ~ category.media) }}" class="grid-item-media" alt="{{ category.name }}" />
+                        {% else %}
+                            <img src="{{ asset('assets/img/category/_placeholder.png') }}" class="grid-item-media" alt="{{ category.name }}" />
+                        {% endif %}
+
+                        {% if is_granted('ROLE_ADMIN') %}
+                            {% if category.isOnline %}
+                                <i class="fas fa-eye"></i>
+                            {% else %}
+                                <i class="fas fa-eye-slash"></i>
+                            {% endif %}
+                        {% endif %}
+
+                        <h3 class="grid-item-title">{{ category.name }}</h3>
+
+                        <p>{{ category.posts | length > 1 ?  category.posts | length ~ ' articles' : category.posts | length ~ ' article' }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="info">Aucune catégorie :/</p>
+        {% endif %}
+    </section>
+{% endblock %}

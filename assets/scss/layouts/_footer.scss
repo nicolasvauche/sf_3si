@@ -1,4 +1,9 @@
 .app-footer {
-    padding: 0.5rem 1rem;
+    margin-bottom: 3.5rem;
+    padding: 1rem;
     background-color: rgba($color-black, 0.15);
+
+    @include respond(md) {
+        margin-bottom: 0;
+    }
 }

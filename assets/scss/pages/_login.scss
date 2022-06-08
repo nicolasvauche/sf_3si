@@ -23,6 +23,10 @@ html {
             }
 
             .app-main {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
                 .app-form {
                     @include respond(md) {
                         margin: 0 30vw;

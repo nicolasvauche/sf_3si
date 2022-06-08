@@ -1,4 +1,12 @@
 .app-main {
-    margin-bottom: 3.5rem;
     padding: 1.5rem 1rem;
+    min-height: 70vh;
+
+    @include respond(sm) {
+        min-height: 83vh;
+    }
+
+    @include respond(md) {
+        min-height: 77.75vh;
+    }
 }
