@@ -1,0 +1,72 @@
+{% extends 'layouts/_default.html.twig' %}
+
+{% block title %}Catégorie {{ category.name }}{% endblock %}
+
+{% block page_title %}Les Catégories{% endblock %}
+
+{% block body_class %}blog{% endblock %}
+
+{% block page_actions %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('app_blog_category_index') }}">
+            <i class="fas fa-plus-circle"></i>
+            Créer une catégorie
+        </a>
+    {% endif %}
+
+    <a href="{{ path('app_blog_category_index') }}">
+        <i class="fas fa-box"></i>
+        Retour aux catégories
+    </a>
+
+    <a href="{{ path('app_blog_post_index') }}">
+        <i class="fas fa-biking"></i>
+        Retour aux articles
+    </a>
+{% endblock %}
+
+{% block main %}
+    <section>
+        <p>
+            {% if category.media %}
+                <img src="{{ asset('assets/img/category/' ~ category.media) }}" class="grid-item-media" alt="{{ category.name }}" />
+            {% else %}
+                <img src="{{ asset('assets/img/category/_placeholder.jpg') }}" class="grid-item-media" alt="{{ category.name }}" />
+            {% endif %}
+        </p>
+
+        <h2>{{ category.name }}</h2>
+
+        <p>
+            {% if category.isOnline %}
+                <i class="fas fa-eye"></i>
+                En ligne
+            {% else %}
+                <i class="fas fa-eye-slash"></i>
+                Brouillon
+            {% endif %}
+        </p>
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <div class="actions">
+                <a href="{{ path('app_blog_category_show', {'slug': category.slug}) }}" class="app-button">
+                    <i class="fas fa-edit"></i>
+                    Modifier
+                </a>
+
+                <a href="{{ path('app_blog_category_show', {'slug': category.slug}) }}" class="app-button danger">
+                    <i class="fas fa-trash"></i>
+                    Supprimer
+                </a>
+            </div>
+        {% endif %}
+    </section>
+
+    <section class="include">
+        <h2>
+            {{ category.posts | length > 1 ?  category.posts | length ~ ' articles' : category.posts | length ~ ' article' }}
+        </h2>
+
+        {% include 'post/_grid.html.twig' with {'posts': category.posts, 'include': true} %}
+    </section>
+{% endblock %}

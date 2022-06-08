@@ -2,12 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Repository\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/blog/categorie', name:'app_blog_category_')]
+#[Route('/blog/categorie', name: 'app_blog_category_')]
 class CategoryController extends AbstractController
 {
     #[Route('/', name: 'index')]
@@ -15,6 +16,14 @@ class CategoryController extends AbstractController
     {
         return $this->render('category/index.html.twig', [
             'categories' => $categoryRepository->findAll(),
+        ]);
+    }
+
+    #[Route('/{slug}', name: 'show')]
+    public function show(Category $category): Response
+    {
+        return $this->render('category/show.html.twig', [
+            'category' => $category,
         ]);
     }
 }

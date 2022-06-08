@@ -1,0 +1,33 @@
+{% if posts | length > 0 %}
+    <div class="app-grid {% if include is defined %}two{% endif %}">
+        {% for post in posts %}
+            <div class="grid-item">
+                <div class="grid-item-header">
+                    {% if post.media %}
+                        <img src="{{ asset('assets/img/post/' ~ post.media) }}" class="grid-item-media" alt="{{ post.title }}" />
+                    {% else %}
+                        <img src="{{ asset('assets/img/post/_placeholder.jpg') }}" class="grid-item-media" alt="{{ post.title }}" />
+                    {% endif %}
+
+                    {% if is_granted('ROLE_ADMIN') %}
+                        {% if post.isOnline %}
+                            <i class="fas fa-eye"></i>
+                        {% else %}
+                            <i class="fas fa-eye-slash"></i>
+                        {% endif %}
+                    {% endif %}
+
+                    <h3 class="grid-item-title">{{ post.title }}</h3>
+                </div>
+
+                <div class="grid-item-body">
+                    <p class="grid-item-info">
+                        <a href="{{ path('app_blog_category_show', {'slug': post.category.slug}) }}">{{ post.category.name }}</a>
+                    </p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p class="info">Aucun article :/</p>
+{% endif %}
