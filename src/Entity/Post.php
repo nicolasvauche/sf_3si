@@ -39,7 +39,7 @@ class Post
     private ?bool $isOnline;
 
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'posts')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private $category;
 
     public function getId(): ?int

@@ -19,7 +19,7 @@ class PostController extends AbstractController
         ]);
     }
 
-    #[Route('/{slug}', name: 'show')]
+    #[Route('/article/details/{slug}', name: 'show')]
     public function show(Post $post): Response
     {
         return $this->render('post/show.html.twig', [

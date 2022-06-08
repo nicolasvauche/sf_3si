@@ -3,6 +3,10 @@
 .vscode/
 .DS_Store
 .sass-cache/
+/public/assets/img/post/*
+!/public/assets/img/post/_placeholder.jpg
+/public/assets/img/category/*
+!/public/assets/img/category/_placeholder.jpg
 ###< custom/custom ###
 
 ###> symfony/framework-bundle ###

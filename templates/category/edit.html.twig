@@ -1,0 +1,38 @@
+{% extends 'layouts/_default.html.twig' %}
+
+{% block title %}Modifier la catégorie {{ category.name }}{% endblock %}
+
+{% block page_title %}Les Catégories{% endblock %}
+
+{% block body_class %}blog{% endblock %}
+
+{% block page_actions %}
+    <a href="{{ path('app_blog_category_index') }}">
+        <i class="fas fa-box"></i>
+        Retour aux catégories
+    </a>
+
+    <a href="{{ path('app_blog_category_add') }}">
+        <i class="fas fa-plus-circle"></i>
+        Créer une catégorie
+    </a>
+
+    <a href="{{ path('app_blog_post_index') }}">
+        <i class="fas fa-biking"></i>
+        Retour aux articles
+    </a>
+{% endblock %}
+
+{% block main %}
+    <section>
+        <p class="media">
+            {% if category.media %}
+                <img src="{{ asset('assets/img/category/' ~ category.media) }}" class="grid-item-media" alt="{{ category.name }}" />
+            {% else %}
+                <img src="{{ asset('assets/img/category/_placeholder.jpg') }}" class="grid-item-media" alt="{{ category.name }}" />
+            {% endif %}
+        </p>
+
+        {% include 'category/_form.html.twig' with {'mode': 'edit'} %}
+    </section>
+{% endblock %}

@@ -7,17 +7,17 @@
 {% block body_class %}blog{% endblock %}
 
 {% block page_actions %}
-    {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('app_blog_category_index') }}">
-            <i class="fas fa-plus-circle"></i>
-            Créer une catégorie
-        </a>
-    {% endif %}
-
     <a href="{{ path('app_blog_category_index') }}">
         <i class="fas fa-box"></i>
         Retour aux catégories
     </a>
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('app_blog_category_add') }}">
+            <i class="fas fa-plus-circle"></i>
+            Créer une catégorie
+        </a>
+    {% endif %}
 
     <a href="{{ path('app_blog_post_index') }}">
         <i class="fas fa-biking"></i>
@@ -49,12 +49,12 @@
             </p>
 
             <div class="actions">
-                <a href="{{ path('app_blog_category_show', {'slug': category.slug}) }}" class="app-button">
+                <a href="{{ path('app_blog_category_edit', {'slug': category.slug}) }}" class="app-button">
                     <i class="fas fa-edit"></i>
                     Modifier
                 </a>
 
-                <a href="{{ path('app_blog_category_show', {'slug': category.slug}) }}" class="app-button danger">
+                <a href="{{ path('app_blog_category_delete', {'id': category.id}) }}" class="app-button danger" onclick="return window.confirm('Confirmez-vous la suppression de cette catégorie ?')">
                     <i class="fas fa-trash"></i>
                     Supprimer
                 </a>

@@ -2,7 +2,7 @@
     <div class="app-grid">
         {% for category in categories %}
             {% if category.isOnline or is_granted('ROLE_ADMIN') %}
-                <div class="grid-item">
+                <div class="grid-item {% if not category.isOnline %}disabled{% endif %}">
                     <a href="{{ path('app_blog_category_show', {'slug': category.slug}) }}">
                         {% if category.media %}
                             <img src="{{ asset('assets/img/category/' ~ category.media) }}" class="grid-item-media" alt="{{ category.name }}" />

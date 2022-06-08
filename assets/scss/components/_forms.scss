@@ -4,7 +4,7 @@
     box-shadow: 1px 1px 2px rgba($color-black, 0.15);
 
     @include respond(md) {
-        margin: 0 20vw;
+        margin: 0 25vw;
     }
 
     .form-group {
@@ -29,6 +29,25 @@
             border: none;
             box-shadow: inset 1px 1px 8px rgba($color-black, 0.15);
             border-radius: 0.25rem;
+        }
+
+        &.checkbox {
+            label {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                span {
+                    order: 2;
+                }
+
+                .form-control {
+                    order: 1;
+                    margin-right: 0.5rem;
+                    width: auto;
+                    box-shadow: none;
+                }
+            }
         }
     }
 }

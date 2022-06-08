@@ -2,7 +2,7 @@
     <div class="app-grid {% if include is defined %}two{% endif %}">
         {% for post in posts %}
             {% if (post.category.isOnline and post.isOnline) or is_granted('ROLE_ADMIN') %}
-                <div class="grid-item">
+                <div class="grid-item {% if not post.category.isOnline or not post.isOnline %}disabled{% endif %}">
                     <div class="grid-item-header">
                         <a href="{{ path('app_blog_post_show', {'slug': post.slug}) }}">
                             {% if post.media %}
