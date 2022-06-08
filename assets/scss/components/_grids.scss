@@ -1,0 +1,29 @@
+.app-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1.5rem;
+
+    @include respond(sm) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .grid-item {
+        padding: 1rem 0.5rem;
+        text-align: center;
+        background-color: rgba($color-blue, 0.1);
+        border-radius: 0.5rem;
+        box-shadow: 1px 1px 2px rgba($color-black, 0.5);
+
+        .grid-item-media {
+            margin-bottom: 0.5rem;
+            height: 150px;
+            width: 100%;
+            object-fit: contain;
+        }
+
+        .grid-item-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+    }
+}

@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <header class="app-header">
+        <a href="{{ path('app_home') }}">
+            <img src="{{ asset('assets/img/logo.png') }}" alt="Logo 3Si" />
+        </a>
+
+        <h1>{% block page_title %}{% endblock %}</h1>
+
+        <div class="actions">
+            {% if block('page_actions') %}
+                <div class="app-dropdown">
+                <span>
+                    <i class="fas fa-ellipsis-h"></i>
+                </span>
+
+                    <div class="app-dropdown-content">
+                        {% block page_actions %}{% endblock %}
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if app.user %}
+                <a href="{{ path('app_logout') }}" class="logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            {% elseif app.request.get('_route') != 'app_login' %}
+                <a href="{{ path('app_login') }}" class="login">
+                    <i class="fas fa-sign-in-alt"></i>
+                </a>
+            {% endif %}
+        </div>
+    </header>
+
+    <nav class="app-navigation">
+        <a href="{{ path('app_home') }}" {% if app.request.get('_route') == 'app_home' %}class="active"{% endif %}>
+            <i class="fas fa-home"></i>
+            accueil
+        </a>
+
+        <a href="{{ path('app_post_index') }}" {% if 'post' in app.request.get('_route') %}class="active"{% endif %}>
+            <i class="fas fa-biking"></i>
+            Le blog
+        </a>
+
+        <a href="{{ path('app_contact') }}" {% if app.request.get('_route') == 'app_contact' %}class="active"{% endif %}>
+            <i class="fas fa-envelope"></i>
+            Contact
+        </a>
+    </nav>
+
+    <main class="app-main">
+        {% block main %}{% endblock %}
+    </main>
+
+    <footer class="app-footer">
+        Footer
+    </footer>
+{% endblock %}

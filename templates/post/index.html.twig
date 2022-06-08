@@ -1,0 +1,40 @@
+{% extends 'layouts/_default.html.twig' %}
+
+{% block title %}Le Blog{% endblock %}
+
+{% block page_title %}Le Blog{% endblock %}
+
+{% block body_class %}blog{% endblock %}
+
+{% block page_actions %}
+    <a href="{{ path('app_post_index') }}">
+        <i class="fas fa-plus-circle"></i>
+        Créer un article
+    </a>
+    <a href="{{ path('app_post_index') }}">
+        <i class="fas fa-box"></i>
+        Les catégories
+    </a>
+{% endblock %}
+
+{% block main %}
+    <section>
+        {% if posts | length > 0 %}
+            <div class="app-grid">
+                {% for post in posts %}
+                    <div class="grid-item">
+                        {% if post.media %}
+                            <img src="{{ asset('assets/img/post/' ~ post.media) }}" class="grid-item-media" alt="{{ post.title }}" />
+                        {% else %}
+                            <img src="{{ asset('assets/img/post/_placeholder.png') }}" class="grid-item-media" alt="{{ post.title }}" />
+                        {% endif %}
+
+                        <h3 class="grid-item-title">{{ post.title }}</h3>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="info">Aucun article :/</p>
+        {% endif %}
+    </section>
+{% endblock %}

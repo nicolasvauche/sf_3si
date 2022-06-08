@@ -1,0 +1,15 @@
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+
+    body {
+        font-family: $font-family-primary;
+        text-align: center;
+        color: $color-black;
+        background-color: $color-white;
+
+        @include respond(md) {
+            text-align: initial;
+        }
+    }
+}

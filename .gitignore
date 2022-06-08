@@ -1,3 +1,9 @@
+###> custom/custom ###
+.idea/
+.vscode/
+.DS_Store
+.sass-cache/
+###< custom/custom ###
 
 ###> symfony/framework-bundle ###
 /.env.local

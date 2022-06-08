@@ -1,0 +1,38 @@
+html {
+    body {
+        &.login {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: calc(100vh - 3.5rem);
+
+            .app-header {
+                justify-content: center;
+
+                a {
+                    flex: 0 0 auto;
+                }
+
+                h1 {
+                    margin-right: 2rem;
+                }
+            }
+
+            .app-navigation {
+                display: none;
+            }
+
+            .app-main {
+                .app-form {
+                    @include respond(md) {
+                        margin: 0 30vw;
+                    }
+                }
+            }
+
+            .app-footer {
+                display: none;
+            }
+        }
+    }
+}
