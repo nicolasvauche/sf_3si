@@ -39,7 +39,7 @@
             accueil
         </a>
 
-        <a href="{{ path('app_post_index') }}" {% if 'post' in app.request.get('_route') %}class="active"{% endif %}>
+        <a href="{{ path('app_blog_post_index') }}" {% if 'blog' in app.request.get('_route') %}class="active"{% endif %}>
             <i class="fas fa-biking"></i>
             Le blog
         </a>

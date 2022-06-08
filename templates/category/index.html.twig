@@ -8,13 +8,13 @@
 
 {% block page_actions %}
     {% if is_granted('ROLE_ADMIN') %}
-        <a href="{{ path('app_category_index') }}">
+        <a href="{{ path('app_blog_category_index') }}">
             <i class="fas fa-plus-circle"></i>
             Créer une catégorie
         </a>
     {% endif %}
 
-    <a href="{{ path('app_post_index') }}">
+    <a href="{{ path('app_blog_post_index') }}">
         <i class="fas fa-biking"></i>
         Retour aux articles
     </a>
