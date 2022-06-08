@@ -27,7 +27,7 @@
 
 {% block main %}
     <section>
-        <p>
+        <p class="media">
             {% if category.media %}
                 <img src="{{ asset('assets/img/category/' ~ category.media) }}" class="grid-item-media" alt="{{ category.name }}" />
             {% else %}

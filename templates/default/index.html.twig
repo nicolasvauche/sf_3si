@@ -5,5 +5,9 @@
 {% block body_class %}home{% endblock %}
 
 {% block main %}
-    Homepage
+    <section>
+        <h2>Les articles récents</h2>
+
+        {% include 'post/_grid.html.twig' with {'posts': postsRecent} %}
+    </section>
 {% endblock %}
