@@ -22,36 +22,6 @@
 
 {% block main %}
     <section>
-        {% if categories | length > 0 %}
-            <div class="app-grid">
-                {% for category in categories %}
-                    <div class="grid-item">
-                        <a href="{{ path('app_blog_category_show', {'slug': category.slug}) }}">
-                            {% if category.media %}
-                                <img src="{{ asset('assets/img/category/' ~ category.media) }}" class="grid-item-media" alt="{{ category.name }}" />
-                            {% else %}
-                                <img src="{{ asset('assets/img/category/_placeholder.jpg') }}" class="grid-item-media" alt="{{ category.name }}" />
-                            {% endif %}
-
-                            {% if is_granted('ROLE_ADMIN') %}
-                                {% if category.isOnline %}
-                                    <i class="fas fa-eye"></i>
-                                {% else %}
-                                    <i class="fas fa-eye-slash"></i>
-                                {% endif %}
-                            {% endif %}
-                        </a>
-
-                        <h3 class="grid-item-title">
-                            <a href="{{ path('app_blog_category_show', {'slug': category.slug}) }}">{{ category.name }}</a>
-                        </h3>
-
-                        <p>{{ category.posts | length > 1 ?  category.posts | length ~ ' articles' : category.posts | length ~ ' article' }}</p>
-                    </div>
-                {% endfor %}
-            </div>
-        {% else %}
-            <p class="info">Aucune catégorie :/</p>
-        {% endif %}
+        {% include 'category/_grid.html.twig' %}
     </section>
 {% endblock %}

@@ -17,13 +17,35 @@
             padding: 1rem 0.5rem;
             box-shadow: inset 1px 1px 8px rgba($color-black, 0.15);
             border-radius: 0.25rem;
+
+            & > p {
+                margin: 0.5rem;
+                text-align: left;
+                line-height: 1.5rem;
+            }
+        }
+
+        h2 {
+            &:last-child {
+                margin-bottom: 0;
+            }
         }
 
         p {
             margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+
+            @include respond(sm) {
+                font-size: 1rem;
+            }
 
             &:last-child {
                 margin-bottom: 0;
+            }
+
+            a {
+                text-decoration: none;
+                color: inherit;
             }
 
             img {

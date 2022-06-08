@@ -121,7 +121,7 @@ class Post
 
     public function isIsOnline(): ?bool
     {
-        return $this->isOnline;
+        return $this->isOnline ?? false;
     }
 
     public function setIsOnline(bool $isOnline): self

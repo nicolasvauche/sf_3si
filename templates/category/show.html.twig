@@ -37,17 +37,17 @@
 
         <h2>{{ category.name }}</h2>
 
-        <p>
-            {% if category.isOnline %}
-                <i class="fas fa-eye"></i>
-                En ligne
-            {% else %}
-                <i class="fas fa-eye-slash"></i>
-                Brouillon
-            {% endif %}
-        </p>
-
         {% if is_granted('ROLE_ADMIN') %}
+            <p>
+                {% if category.isOnline %}
+                    <i class="fas fa-eye"></i>
+                    En ligne
+                {% else %}
+                    <i class="fas fa-eye-slash"></i>
+                    Brouillon
+                {% endif %}
+            </p>
+
             <div class="actions">
                 <a href="{{ path('app_blog_category_show', {'slug': category.slug}) }}" class="app-button">
                     <i class="fas fa-edit"></i>

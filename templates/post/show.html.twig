@@ -1,0 +1,72 @@
+{% extends 'layouts/_default.html.twig' %}
+
+{% block title %}Article : {{ post.title }}{% endblock %}
+
+{% block page_title %}Le Blog{% endblock %}
+
+{% block body_class %}blog{% endblock %}
+
+{% block page_actions %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('app_blog_post_index') }}">
+            <i class="fas fa-plus-circle"></i>
+            Créer un article
+        </a>
+    {% endif %}
+
+    <a href="{{ path('app_blog_post_index') }}">
+        <i class="fas fa-biking"></i>
+        Retour aux articles
+    </a>
+
+    <a href="{{ path('app_blog_category_index') }}">
+        <i class="fas fa-box"></i>
+        Les catégories
+    </a>
+{% endblock %}
+
+{% block main %}
+    <section>
+        <p>
+            {% if post.media %}
+                <img src="{{ asset('assets/img/post/' ~ post.media) }}" class="grid-item-media" alt="{{ post.title }}" />
+            {% else %}
+                <img src="{{ asset('assets/img/post/_placeholder.jpg') }}" class="grid-item-media" alt="{{ post.title }}" />
+            {% endif %}
+        </p>
+
+        <h2>{{ post.title }}</h2>
+
+        <p>
+            <a href="{{ path('app_blog_category_show', {'slug': post.category.slug}) }}">{{ post.category.name }}</a>
+        </p>
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <p>
+                {% if post.isOnline %}
+                    <i class="fas fa-eye"></i>
+                    En ligne
+                {% else %}
+                    <i class="fas fa-eye-slash"></i>
+                    Brouillon
+                {% endif %}
+            </p>
+
+            <div class="actions">
+                <a href="{{ path('app_blog_post_show', {'slug': post.slug}) }}" class="app-button">
+                    <i class="fas fa-edit"></i>
+                    Modifier
+                </a>
+
+                <a href="{{ path('app_blog_post_show', {'slug': post.slug}) }}" class="app-button danger">
+                    <i class="fas fa-trash"></i>
+                    Supprimer
+                </a>
+            </div>
+        {% endif %}
+    </section>
+
+    <section class="include">
+        {{ post.content | raw }}
+    </section>
+{% endblock %}

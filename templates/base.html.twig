@@ -10,9 +10,13 @@
 
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
 
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Ubuntu:wght@400;700&display=swap" rel="stylesheet" />
+
         <script src="https://kit.fontawesome.com/b916232238.js" crossorigin="anonymous"></script>
 
-        <link rel="stylesheet" href="{{asset('assets/css/styles.min.css')}}" />
+        <link rel="stylesheet" href="{{ asset('assets/css/styles.min.css') }}" />
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
