@@ -14,7 +14,7 @@ class DefaultController extends AbstractController
     {
         return $this->render('default/index.html.twig',
             [
-                'postsRecent' => $postRepository->findBy([], ['updatedAt' => 'DESC', 'createdAt' => 'DESC', 'id' => 'DESC'], 6),
+                'postsRecent' => $postRepository->findBy(['isOnline' => true], ['updatedAt' => 'DESC', 'createdAt' => 'DESC', 'id' => 'DESC'], 6),
             ]);
     }
 
