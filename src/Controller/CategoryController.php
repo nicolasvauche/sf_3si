@@ -6,6 +6,7 @@ use App\Entity\Category;
 use App\Form\CategoryType;
 use App\Repository\CategoryRepository;
 use App\Service\FileUploader;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,6 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('/blog/categorie', name: 'app_blog_category_')]
+#[isGranted('ROLE_USER')]
 class CategoryController extends AbstractController
 {
     #[Route('/', name: 'index')]
@@ -33,14 +35,17 @@ class CategoryController extends AbstractController
     }
 
     #[Route('/ajouter', name: 'add')]
+    #[isGranted('ROLE_ADMIN')]
     public function add(Request $request, CategoryRepository $categoryRepository, SluggerInterface $slugger, FileUploader $fileUploader): Response
     {
         $category = new Category();
+
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $category = $form->getData();
+
             /** @var UploadedFile $categoryMediaFile */
             $categoryMediaFile = $form->get('media')->getData();
 
@@ -49,6 +54,7 @@ class CategoryController extends AbstractController
                 $category->setMedia($fileName);
             }
             $categoryRepository->add($category, true);
+
             return $this->redirectToRoute('app_blog_category_index', [], Response::HTTP_SEE_OTHER);
         }
 

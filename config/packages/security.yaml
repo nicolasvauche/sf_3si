@@ -32,7 +32,9 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/blog, roles: ROLE_USER }
+
+    # Redirect to login page if access denied
+    access_denied_url: /login
 
 when@test:
     security:
